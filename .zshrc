@@ -20,3 +20,7 @@ alias szshrc="source ${HOME}/.zshrc"
 
 # Common dot stuff
 source "${HOME}/.commonrc.sh"
+
+# WSL
+win10_username="13point5"
+export win10="/mnt/c/Users/${win10_username}"
