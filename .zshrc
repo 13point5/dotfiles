@@ -19,4 +19,4 @@ source "${HOME}/.bash_aliases"
 alias szshrc="source ${HOME}/.zshrc"
 
 # Common dot stuff
-source $HOME/.commonrc.sh
+source "${HOME}/.commonrc.sh"
