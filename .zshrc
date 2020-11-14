@@ -15,9 +15,7 @@ plugins=(git tmux yarn zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # aliases
-source .aliases
-
-alias zshrc="code ${HOME}/dotfiles/.zshrc"
+source "${HOME}/.bash_aliases"
 alias szshrc="source ${HOME}/.zshrc"
 
 # Common dot stuff
