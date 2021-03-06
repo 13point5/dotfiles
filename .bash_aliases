@@ -12,6 +12,12 @@ mkcd () {
 # apt
 alias apt="sudo apt-get -y"
 
+# wsl ubuntu services
+alias su-ser="sudo service"
+
+# wsl DB services setup
+alias dbsup="su-ser mongodb start;su-ser redis-server start;su-ser postgresql start;"
+
 # vscode
 alias c="code ."
 
