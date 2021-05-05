@@ -10,7 +10,7 @@ DISABLE_AUTO_TITLE="true"
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git tmux yarn zsh-autosuggestions zsh-syntax-highlighting) 
+plugins=(git tmux yarn npm zsh-autosuggestions zsh-syntax-highlighting) 
 
 source $ZSH/oh-my-zsh.sh
 

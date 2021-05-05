@@ -1,6 +1,6 @@
 " Plugins
 call plug#begin()
-Plug 'mhartington/oceanic-next'
+Plug 'haishanh/night-owl.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
@@ -30,9 +30,7 @@ endif
 " Theme
 syntax on
 set t_Co=256
-colorscheme OceanicNext
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
+colorscheme night-owl
 
 
 " Normal stuff
