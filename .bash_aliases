@@ -1,7 +1,8 @@
 # Aliases I actually use
 
 # normal stuff
-alias l="ls -lhaF"
+alias l="exa -lh --git --color=auto --icons"
+alias la="exa -lah --git --color=auto --icons"
 alias ..="cd .."
 alias ...="cd ../.."
 
