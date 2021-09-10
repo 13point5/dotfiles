@@ -11,7 +11,8 @@ mkcd () {
 }
 
 # apt
-alias apt="sudo apt-get -y"
+alias s="sudo"
+alias sapt="sudo apt-get -y"
 
 # wsl ubuntu services
 alias su-ser="sudo service"
