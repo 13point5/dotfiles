@@ -14,9 +14,11 @@ plugins=(git tmux z yarn npm zsh-autosuggestions zsh-syntax-highlighting zsh-pec
 
 source $ZSH/oh-my-zsh.sh
 
-# aliases
+# my dotfiles thingies
 source "${HOME}/.bash_aliases"
+source "${HOME}/.common.sh"
 
+# zsh aliases and funcs
 alias szshrc="source ${HOME}/.zshrc"
 
 zsh_hist_fix () {
@@ -26,9 +28,7 @@ zsh_hist_fix () {
     rm ~/.zsh_history_bad
 }
 
-# Common dot stuff
-source "${HOME}/.commonrc.sh"
 
-# WSL
-win10_username="13point5"
-export win10="/mnt/c/Users/${win10_username}"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
