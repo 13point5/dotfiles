@@ -1,11 +1,10 @@
-# One Dark theme
-source terminal_theme.sh
+# Uncomment the stuff needed and run the script with sudo
 
 # Essentials
-sudo apt install -y git stow curl exa peco zsh tmux neovim
+# sudo apt install -y git stow curl exa peco zsh tmux neovim
 
 # z by Rupa
-wget https://raw.githubusercontent.com/rupa/z/master/z.sh -P $HOME
+# wget https://raw.githubusercontent.com/rupa/z/master/z.sh -P $HOME
 
 # oh-my-zsh
 # sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -15,4 +14,7 @@ wget https://raw.githubusercontent.com/rupa/z/master/z.sh -P $HOME
 # git clone https://github.com/jimeh/zsh-peco-history.git ${ZSH_CUSTOM}/plugins/zsh-peco-history
 
 # NVM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# base-16 shell
+# git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell
