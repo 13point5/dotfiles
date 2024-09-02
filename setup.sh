@@ -14,7 +14,7 @@
 # git clone https://github.com/jimeh/zsh-peco-history.git ${ZSH_CUSTOM}/plugins/zsh-peco-history
 
 # NVM
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 # base-16 shell
 # git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell
