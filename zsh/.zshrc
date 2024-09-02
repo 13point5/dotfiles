@@ -39,7 +39,7 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 # Created by `pipx` on 2023-07-26 17:30:46
-export PATH="$PATH:/Users/13point5/.local/bin"
+export PATH="$PATH:/Users/sriraam/.local/bin"
 
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
@@ -48,17 +48,7 @@ export PATH=$PATH:$GOPATH/binexport PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby@3.1/bin:$PATH"
 
 ulimit -n 4096
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/13point5/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/13point5/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/13point5/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/13point5/google-cloud-sdk/completion.zsh.inc'; fi
 
 # openJDK
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-# bun completions
-[ -s "/Users/13point5/.bun/_bun" ] && source "/Users/13point5/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"

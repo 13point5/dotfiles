@@ -1,8 +1,10 @@
 # Aliases I actually use
 
 # normal stuff
-alias l="exa -lh --color=auto --icons"
-alias la="exa -lah --color=auto --icons"
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -la'
+alias lt='ls --tree'
 alias ..="cd .."
 alias ...="cd ../.."
 

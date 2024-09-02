@@ -1,7 +1,7 @@
 # Uncomment the stuff needed and run the script with sudo
 
 # Essentials
-# sudo apt install -y git stow curl exa peco zsh tmux neovim
+# sudo apt install -y git stow curl lsd peco zsh tmux neovim
 
 # z by Rupa
 # wget https://raw.githubusercontent.com/rupa/z/master/z.sh -P $HOME
