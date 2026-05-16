@@ -18,5 +18,37 @@ alias gacp='git add . && git commit && git push'
 alias gstat='git status'
 alias gpull='git pull'
 
+# tmux (from ohmyzsh/plugins/tmux/tmux.plugin.zsh)
+function _build_tmux_alias {
+  setopt localoptions no_rc_expand_param
+  eval "function $1 {
+    if [[ -z \$1 ]] || [[ \${1:0:1} == '-' ]]; then
+      tmux $2 \"\$@\"
+    else
+      tmux $2 $3 \"\$@\"
+    fi
+  }"
+}
+alias tksv='tmux kill-server'
+alias tl='tmux list-sessions'
+_build_tmux_alias "ta"   "attach"          "-t"
+_build_tmux_alias "tad"  "attach -d"       "-t"
+_build_tmux_alias "to"   "new-session -A"  "-s"
+_build_tmux_alias "ts"   "new-session"     "-s"
+_build_tmux_alias "tkss" "kill-session"    "-t"
+
+talias() {
+  cat <<'EOF'
+tmux shortcuts:
+  ts <name>    new-session -s <name>
+  to <name>    new-session -A -s <name>     (attach if exists)
+  ta <name>    attach -t <name>             (no arg → attach last)
+  tad <name>   attach -d -t <name>          (detach others first)
+  tl           list-sessions
+  tkss <name>  kill-session -t <name>
+  tksv         kill-server
+EOF
+}
+
 # reload shell
 alias szshrc='source ~/.zshrc'

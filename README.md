@@ -15,9 +15,6 @@ stow zsh git tmux
 
 # make zsh the default shell (if it isn't already)
 chsh -s $(which zsh)
-
-# tmux plugin manager (then inside tmux press: prefix + I)
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
 First zsh launch auto-installs [zinit](https://github.com/zdharma-continuum/zinit) and the plugins below.
@@ -26,7 +23,7 @@ First zsh launch auto-installs [zinit](https://github.com/zdharma-continuum/zini
 
 - **zsh** — zinit, turbo-loaded plugins (autosuggestions, syntax-highlighting), minimal two-line git-aware prompt, lazy nvm, fzf
 - **git** — name/email + nvim as editor
-- **tmux** — Ctrl-a prefix, hjkl panes, sane splits, TPM
+- **tmux** — Ctrl-a prefix, hjkl panes, sane splits
 
 ## Profile startup
 
