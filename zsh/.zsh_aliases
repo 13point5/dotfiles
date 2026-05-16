@@ -17,6 +17,9 @@ alias gp='git push'
 alias gacp='git add . && git commit && git push'
 alias gstat='git status'
 alias gpull='git pull'
+alias glo='git log --oneline --decorate'
+alias glog='git log --oneline --decorate --graph'
+alias gloga='git log --oneline --decorate --graph --all'
 
 # tmux (from ohmyzsh/plugins/tmux/tmux.plugin.zsh)
 function _build_tmux_alias {
