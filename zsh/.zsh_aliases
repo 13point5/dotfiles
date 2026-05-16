@@ -1,0 +1,22 @@
+# nav
+alias l='ls -l'
+alias la='ls -la'
+alias ..='cd ..'
+alias ...='cd ../..'
+mkcd() { mkdir -pv -- "$1" && cd -- "$1"; }
+
+# editor
+alias c='code .'
+
+# git
+alias ga='git add'
+alias gaa='git add .'
+alias gcm='git commit'
+alias gacm='git add . && git commit'
+alias gp='git push'
+alias gacp='git add . && git commit && git push'
+alias gstat='git status'
+alias gpull='git pull'
+
+# reload shell
+alias szshrc='source ~/.zshrc'

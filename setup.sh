@@ -1,20 +1,19 @@
-# Uncomment the stuff needed and run the script with sudo
+#!/usr/bin/env bash
+# Minimal dotfiles setup (macOS).
+# Uncomment what you need and run each block.
 
-# Essentials
-# sudo apt install -y git stow curl lsd peco zsh tmux neovim
+# --- prerequisites ---
+# brew install stow git neovim tmux
 
-# z by Rupa
-# wget https://raw.githubusercontent.com/rupa/z/master/z.sh -P $HOME
+# --- symlink configs into $HOME via stow ---
+# cd ~/dotfiles
+# stow zsh git tmux
 
-# oh-my-zsh
-# sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# --- make zsh the default shell (if not already) ---
 # chsh -s $(which zsh)
-# git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-# git clone https://github.com/jimeh/zsh-peco-history.git ${ZSH_CUSTOM}/plugins/zsh-peco-history
 
-# NVM
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# --- tmux plugin manager (for .tmux.conf) ---
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# then inside tmux: prefix + I
 
-# base-16 shell
-# git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell
+# zinit installs itself on first zsh startup — no manual step needed.

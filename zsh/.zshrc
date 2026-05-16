@@ -1,54 +1,87 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Uncomment the next two lines (top + zprof at bottom) to profile startup
+# zmodload zsh/zprof
 
-# Path to your oh-my-zsh installation.
-export ZSH="${HOME}/.oh-my-zsh"
+# ---- History ----
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_VERIFY \
+       EXTENDED_HISTORY HIST_REDUCE_BLANKS INC_APPEND_HISTORY
 
-# zsh config
-ZSH_THEME="robbyrussell"
-DISABLE_AUTO_TITLE="true"
+# ---- Shell behaviour ----
+setopt AUTO_CD            # type a dir name (or path) to cd into it
+setopt INTERACTIVE_COMMENTS  # allow # comments at the prompt
 
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git tmux rust z yarn npm zsh-autosuggestions zsh-syntax-highlighting zsh-peco-history poetry) 
+# ---- Completion (rebuild dump at most once per day) ----
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 
-source $ZSH/oh-my-zsh.sh
+# ---- zinit (auto-install on first run) ----
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME/.git" ]; then
+    mkdir -p "$(dirname "$ZINIT_HOME")"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "${ZINIT_HOME}/zinit.zsh"
 
-# my dotfiles thingies
-source "${HOME}/.bash_aliases"
-source "${HOME}/.common.sh"
+# Plugins — turbo-loaded (async, after prompt shows)
+zinit ice wait lucid atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
 
-# zsh aliases and funcs
-alias szshrc="source ${HOME}/.zshrc"
+# syntax-highlighting must be loaded last
+zinit ice wait lucid atinit"zicompinit; zicdreplay"
+zinit light zsh-users/zsh-syntax-highlighting
 
-zsh_hist_fix () {
-    mv ~/.zsh_history ~/.zsh_history_bad
-    strings ~/.zsh_history_bad > ~/.zsh_history
-    fc -R ~/.zsh_history
-    rm ~/.zsh_history_bad
-}
+# ---- Plugin tuning ----
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-# Added by Amplify CLI binary installer
-export PATH="$HOME/.amplify/bin:$PATH"
+# ---- Two-line prompt: [path] on <branch> [indicator]  /  > ----
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr   ' %F{green}+%f'
+zstyle ':vcs_info:*' unstagedstr ' %F{red}✗%f'
+zstyle ':vcs_info:git:*' formats       ' on %F{magenta}%b%f%c%u'
+zstyle ':vcs_info:git:*' actionformats ' on %F{magenta}%b|%a%f%c%u'
+setopt PROMPT_SUBST
+PROMPT='%F{cyan}%~%f${vcs_info_msg_0_}
+%F{green}>%f '
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-export PATH="$PATH:/Users/sriraam/.local/bin"
-
-export GOPATH=$HOME/go
-export PATH="$GOPATH/bin:$PATH"
-
-export PATH=$PATH:$GOPATH/binexport PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-export PATH="/opt/homebrew/opt/ruby@3.1/bin:$PATH"
-
+# ---- Env ----
+export LANG=en_US.UTF-8
+export EDITOR='nvim'
 ulimit -n 4096
 
-# openJDK
+# ---- PATH ----
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
+# ---- Lazy nvm (loads only when node/npm/npx/nvm is first called) ----
+export NVM_DIR="$HOME/.nvm"
+_load_nvm() {
+    unset -f nvm node npm npx
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \
+        . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+}
+nvm()  { _load_nvm; nvm  "$@"; }
+node() { _load_nvm; node "$@"; }
+npm()  { _load_nvm; npm  "$@"; }
+npx()  { _load_nvm; npx  "$@"; }
+
+# ---- fzf (Ctrl-R fuzzy history, Ctrl-T file finder, Alt-C cd) ----
+command -v fzf &>/dev/null && source <(fzf --zsh)
+
+# ---- Aliases ----
+[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
+
+# ---- Local overrides (gitignored, machine-specific) ----
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# zprof  # uncomment with zmodload line at top to profile
